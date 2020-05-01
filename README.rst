@@ -104,14 +104,14 @@ normalized histogram from it. Let's normalize it by POT to ``9e20``.
 
 .. code-block:: python
 
-    root_hist = spectr.rhist(pot = 9e20)
+    root_hist = spectrum.rhist(pot = 9e20)
 
 Great, now we are ready to plot our first spectrum with ``cafplot``
 
 .. code-block:: python
 
     f, ax = plt.subplots() # Create matplotlib Figure/Axes
-    plot_rhist1d(ax, rhist, histtype = "step", color = "red")
+    plot_rhist1d(ax, root_hist, 'NHit', histtype = "step", color = "red")
     plt.show() # show plot
 
 You should see the plotted spectrum opened in a separate window.
