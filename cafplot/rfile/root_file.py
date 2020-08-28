@@ -78,6 +78,13 @@ class ROOTFile(IRFile):
     def get_rhist2d(self, path):
         return ROOTFile._load_rhist2d(path, self._f)
 
+    def get_graph(self, path):
+        graph = self._f.get(path)
+        x = graph.xvalues
+        y = graph.yvalues
+
+        return (x, y)
+
     def get_spectrum(self, path):
         spectr_dir = self._f.get(path)
 

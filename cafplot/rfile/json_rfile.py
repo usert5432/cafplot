@@ -99,6 +99,14 @@ class JSONRFile(IRFile):
         d = JSONRFile._get_dict_by_path(path, self._dict)
         return JSONRFile._load_rhist2d(d)
 
+    def get_graph(self, path):
+        d = JSONRFile._get_dict_by_path(path, self._dict)
+
+        x = np.array(d['x'])
+        y = np.array(d['y'])
+
+        return (x, y)
+
     def get_spectrum(self, path):
         spectr_dict = self._get_dict_by_path(path, self._dict)
 

@@ -16,6 +16,10 @@ class IRFile:
         """Load ROOT 2D histogram RHist2D specified by `path`."""
         raise NotImplementedError
 
+    def get_graph(self, path):
+        """Load ROOT TGraph as a tuple of (x, y) arrays specified by `path`."""
+        raise NotImplementedError
+
     def get_spectrum(self, path):
         """Load CAFAna Spectrum specified by `path`."""
         raise NotImplementedError
