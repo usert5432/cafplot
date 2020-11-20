@@ -8,7 +8,7 @@ def readme():
 
 setuptools.setup(
     name             = 'cafplot',
-    version          = '0.1',
+    version          = '0.1.0',
     author           = 'Dmitrii Torbunov',
     author_email     = 'torbu001@umn.edu',
     classifiers      = [
@@ -23,7 +23,7 @@ setuptools.setup(
     ],
     license          = 'MIT',
     long_description = readme(),
-    packages         = setuptools.find_packages(),
+    packages         = setuptools.find_packages(exclude=['examples']),
     url              = 'https://github.com/usert5432/cafplot',
 )
 
