@@ -3,6 +3,7 @@ A class for loading CAFAna objects from ROOT files.
 """
 
 import uproot
+import numpy as np
 
 from cafplot.rhist    import RHist1D, RHist2D
 from cafplot.spectrum import Spectrum
@@ -28,16 +29,15 @@ class ROOTFile(IRFile):
 
     @staticmethod
     def _load_hist_internals(hist):
-        values = hist.values
-        err_sq = hist.variances
-        bins   = hist.edges
+        values = hist.values()
+        err_sq = hist.variances()
+        bins   = np.array([ ax.edges() for ax in hist.axes ])
 
         return (bins, values, err_sq)
 
     @staticmethod
     def _load_rhist1d(path, d):
-        bins, values, err_sq = ROOTFile._load_hist_internals(d.get(path))
-        return RHist1D([bins,], values, err_sq)
+        return RHist1D(*ROOTFile._load_hist_internals(d.get(path)))
 
     @staticmethod
     def _load_rhist2d(path, d):
@@ -62,13 +62,11 @@ class ROOTFile(IRFile):
     @staticmethod
     def _load_surf_internals(surf_dir):
         rhist    = ROOTFile._load_rhist2d('hist', surf_dir)
-        fit_vals = surf_dir.get('minValues')
+        fit_vals = surf_dir.get('minValues').member('fElements')
 
-        # TODO: find how to unpack TVector properly
-        # pylint: disable=protected-access
-        val = fit_vals._fElements[0]
-        x   = fit_vals._fElements[1]
-        y   = fit_vals._fElements[2]
+        val = fit_vals[0]
+        x   = fit_vals[1]
+        y   = fit_vals[2]
 
         return (rhist, val, x, y)
 
