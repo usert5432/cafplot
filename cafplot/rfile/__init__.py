@@ -3,6 +3,7 @@ This module contains classes and functions to load CAFAna objects from files.
 """
 
 import importlib
+import importlib.util
 
 from .json_rfile import JSONRFile
 from .funcs      import load
