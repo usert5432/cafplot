@@ -8,7 +8,7 @@ def readme():
 
 setuptools.setup(
     name             = 'cafplot',
-    version          = '0.1.0',
+    version          = '0.2.0',
     author           = 'Dmitrii Torbunov',
     author_email     = 'torbu001@umn.edu',
     classifiers      = [
